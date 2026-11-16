@@ -35,13 +35,16 @@
     --font-weight-light: 300;
     --font-weight-bold: 700;
     --accent-font: 'Momo Trust Display', 'sans-serif';
+    
 
     --font-s: 0.75rem; /*  */ 
     --font-med: 1rem; /* p */
     --font-lg: 1.25rem; /* subtitle */
     --font-xlg: 2rem; /* title */
     --font-2xlg: 2.5rem; /* heading */ 
-
+    --step-0: clamp(1rem, .96rem + .2vw, 1.125rem);
+    --step-3: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
+    --measure: 68ch;
 
     /* spacing */ 
     --space-none: 0;
@@ -65,9 +68,10 @@
   body {
     font-family: var(--body-font);
     font-weight: var(--font-weight-light);
-    font-size: var(--font-med);
+    font-size: var(--step-0);
     line-height: 1.5;
     background-color: var(--color-text);
+
   }
 
   header{
@@ -83,6 +87,7 @@
     margin: var(--space-none) auto var(--space-lg);
     text-align: left;
     padding: var(--space-xs) var(--space-xs) var(--space-med);
+    max-inline-size: 65ch;
   }
 
   .section {
@@ -98,7 +103,7 @@
 
   h1 {
     font-family: var(--body-font);
-    font-size: clamp(var(--font-lg), 5vw, var(--font-2xlg));
+    font-size: var(--step-3);
     font-weight: var(--font-weight-bold);
     margin: var(--space-lg) var(--space-none);
   }
