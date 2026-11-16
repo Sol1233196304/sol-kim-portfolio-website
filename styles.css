@@ -1,0 +1,452 @@
+@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+@layer reset, base, layout, components, utilities, overrides;
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  a {
+  text-decoration: none;
+  color: inherit;
+  }
+}
+
+@layer base {
+  :root {
+    /* Add design tokens here. */
+    /* colors */
+    --color-primary: #ff4405;
+    --color-text: #29140C;
+    --color-background: #FFF3C4; 
+    --color-white: #ffffff;
+
+
+    /* type */
+    --body-font: 'raleway', sans-serif; 
+    --font-weight-light: 300;
+    --font-weight-bold: 700;
+    --accent-font: 'Momo Trust Display';
+
+    --font-s: 0.75rem; /*  */ 
+    --font-med: 1rem; /* p */
+    --font-lg: 1.25rem; /* subtitle */
+    --font-xlg: 2rem; /* title */
+    --font-2xlg: 2.5rem; /* heading */ 
+
+
+    /* spacing */ 
+    --space-none: 0;
+    --space-xs: 0.25rem; /* 4px */ 
+    --space-s: 0.5rem; /* 8px */
+    --space-med: 1rem;  /* 16px */
+    --space-lg: 1.5rem; /* 24px */
+    --space-xlg: 2.5rem;  /* 40px */
+    
+    /* shape */
+    --radius-s: 8px; 
+    --radius-lg: 16px;
+    
+
+    /* focus */
+	  --box-shadow-s: 3px 3px 7px grey;
+  }
+    
+    /* Any button over which the user's pointer is hovering */
+
+  body {
+    font-family: var(--body-font);
+    font-weight: var(--font-weight-light);
+    font-size: var(--font-med);
+    line-height: 1.5;
+    background-color: var(--color-text);
+  }
+
+  header{
+    margin: var(--space-xlg);
+  }
+
+  main {
+    background-color: var(--color-background);
+    color: var(--color-text);    
+  }
+
+  p {
+    margin: var(--space-none) auto var(--space-lg);
+    text-align: center;
+    padding: var(--space-xs) var(--space-xlg) var(--space-med);
+  }
+
+  .section {
+    margin-inline: auto;
+    margin-block: var(--space-none) var(--space-lg);
+    padding: var(--space-s) var(--space-xlg);
+    position: relative;
+  }
+
+  .hero {
+    block-size: 50vh;
+  }
+
+  h1 {
+    font-family: var(--body-font);
+    font-size: clamp(var(--font-lg), 5vw, var(--font-2xlg));
+    font-weight: var(--font-weight-bold);
+    margin: var(--space-lg) var(--space-none);
+  }
+
+  h2 {
+    margin-block-start: var(--space-none);
+    font-size: var(--font-lg);
+  }
+
+  h3 {
+    padding: var(--space-xs) var(--space-lg);
+  }
+
+  .wrapper {
+    inline-size: calc(100%-var(--space-lg));
+    margin-inline: auto;
+  }
+  footer {
+    font-family: var(--accent-font);
+    font-size: var(--font-s);
+    margin: var(--space-none) auto;
+    color: var(--color-background);
+    background-color: var(--color-text);
+    vertical-align: baseline;
+    padding: var(--space-xlg);
+  }
+}
+
+@layer layout {
+  /* Add page-level layout and composition classes here. */
+  header {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  }
+
+  nav ul {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-lg);
+  list-style: none;
+  }
+  
+  nav a {
+	display: inline-block;
+	padding: var(--space-s);
+  background-color: var(--color-white); 
+  border-radius:var(--radius-s);
+  font-family: var(--accent-font);
+  color: var(--color-text);
+  font-size: var(--font-s);
+  text-align:center;
+  }
+
+  .Featured-work-wrapper{
+    max-width: 1200px;
+    margin-inline: auto;    
+  } 
+
+  .card-list{
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 4px;
+
+  }
+
+  .card-wrapper {
+  container-type: inline-size;
+
+  }
+
+  .card{  
+    /*Created a responsive square container with AI help*/
+    display: grid;
+
+    overflow: hidden;
+    position:relative;
+    margin:0;
+    aspect-ratio: 1/1;
+    }
+  
+  .card h3{
+    position: absolute;
+    margin: 0;
+    top: 0;
+    left: var(--space-s);
+    padding:0;
+  }
+
+  .card p {
+    visibility: hidden;  
+  }
+  .card a {
+    display: block;
+    aspect-ratio: 1/1;
+  }
+  .card img {
+    width: 100%;
+    height: 100%;
+    margin: 0, auto;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card .button{
+    visibility: hidden;
+  }
+
+  .work {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: var(--space-lg);
+  list-style: none;  
+  }
+  .work ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  list-style: none;
+  justify-items: flex-start;
+  }
+
+}
+
+@layer components {
+  /* Add reusable components such as buttons, cards, callouts, and forms here. */
+
+  /* buttons */
+  button {
+    background-color: var(--color-white);
+    font-size: var(--font-s);
+    color: var(--color-text);
+    bottom: var(--space-none);
+    right: var(--space-none);
+    padding: var(--space-s) var(--space-lg);
+    margin: var(--space-lg) var(--space-s);
+    font-family: var(--accent-font);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-lg);
+
+  }
+
+
+  /* cards */
+  .card {
+    background-color: var(--color-white);
+    color: var(--color-text);
+    border: 1px dashed var(--color-text);
+    margin: var(--space-xs);
+
+    border-radius: var(--radius-s);
+  }
+
+  /* callouts */
+
+  .callout {
+    border-radius: var(--radius-lg);
+    background-color: var(--color-white);
+  }
+
+  /* forms */
+  form {
+    background-color: var(--color-white);
+    color: var(--color-text);
+    border: 3px solid var(--color-text);
+    margin: var(--space-med) auto;
+    padding: var(--space-med);
+    position: relative;
+    border-radius: var(--radius-s);
+  }
+
+  label {
+  display: block;
+  margin-block-start: var(--space-s);
+  }
+
+} 
+
+
+
+@layer utilities {
+/*  at least three purposeful utilities plus hover, focus-visible, current page, and one additional relevant state. */
+
+  .visually-hidden {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+  /*current page */
+  nav [aria-current="page"]{
+    color: var(--color-background);
+    background-color: var(--color-text);
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* focus */
+  textarea:focus-visible, input:focus-visible {
+  outline: 2px dashed var(--color-text);
+  border-radius: var(--radius-s);
+  box-shadow: var(--box-shadow-s);
+  }
+
+  /* hover */
+  main a:hover, button:hover {
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  }
+
+  /* active */
+  a:active, button:active {
+  transform: scale(0.95);
+  }
+
+
+  
+}
+
+@layer overrides {
+  /* Keep this layer small. Use it only for intentional exceptions. */
+
+  .button {
+  display: block;
+  width: 100;
+  justify-items: center;
+  }
+
+  .work a {
+  margin: var(--space-none);
+  }
+
+}
+
+
+@container (width > 250px) {
+  .card {
+    display: flex;    
+    flex-direction: column;
+    aspect-ratio: auto;
+  }
+  .card h3{
+    position: static;
+    padding: 0 var(--space-s);
+  }
+
+  .card a {
+  width: 100%;
+  }
+  .card img {
+    padding: var(--space-xs);
+    border-radius: var(--radius-s);
+    aspect-ratio: 1/1;
+  } 
+   
+  .card p{
+  visibility: visible;  
+  display: block;
+  margin: 0;
+  }
+}
+@container (width > 350px) {
+  .card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "title title"
+      "img   text"
+      "img   btn";
+    grid-template-rows: auto 1fr auto;
+    gap: var(--space-s);
+    aspect-ratio: auto; 
+  }
+
+  .card h3 {
+    grid-area: title;
+    position: static;
+  }
+
+  .card a {
+    grid-area: img;
+    align-self: start;
+    padding: 0 var(--space-s) var(--space-s);
+  }
+
+  .card p {
+    grid-area: text;
+    display: block;
+    visibility: visible;
+    margin: 0;
+    padding: 0;
+    text-align: left; 
+  }
+
+  .card .button {
+    grid-area: btn;
+    display: block;
+    visibility: visible;
+    justify-self: end;
+    margin: var(--space-med);
+  }
+}
+
+
+@media (width > 600px) {
+      /*medium screens, .card-grid needs at least 650px+margin to maintain its layout.*/
+  .card-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+  }
+  .button{
+    visibility: visible;
+  }
+  
+}
+
+@media (width > 950px) {
+  .card-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+  .button{
+    visibility: visible;
+  }
+  
+}
+
+@media print {
+  /* Add print improvements here. */
+  .header,
+  .footer,
+  .nav {
+    display: none;
+    
+  }
+  body {
+    background-color: white;
+    color: #000000;
+  }
+}
+/*Requirements 4 : Include a simple fallback or note explaining why the default remains usable.*/
+  @supports not (container-type: inline-size) {
+    @media (width > 1150px) {
+      .card {
+      display: grid;    
+      grid-template-columns: 1fr 2fr;
+      grid-template-rows: 2fr 0.5fr;
+      }
+    }
+  }
