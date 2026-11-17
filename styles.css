@@ -121,6 +121,11 @@
     inline-size: calc(100%-var(--space-lg));
     margin-inline: auto;
   }
+
+  .practice-poster{
+    display: none;
+  }
+
   footer {
     font-family: var(--accent-font);
     font-size: var(--font-s);
@@ -309,7 +314,7 @@
   }
 
   /* focus */
-  textarea:focus-visible, input:focus-visible {
+  video:focus-visible textarea:focus-visible, input:focus-visible {
   outline: 2px dashed var(--color-text);
   border-radius: var(--radius-s);
   box-shadow: var(--box-shadow-s);
@@ -462,5 +467,13 @@
       grid-template-columns: 1fr 2fr;
       grid-template-rows: 2fr 0.5fr;
       }
+    }
+  }
+    @media (prefers-reduced-motion: reduce) {
+    .practice-video{
+    display: none;
+    }
+    .practice-poster{
+      display: block;
     }
   }
